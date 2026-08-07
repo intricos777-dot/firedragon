@@ -1,0 +1,92 @@
+{
+  "manifest_version": 2,
+  "name": "Firedragon Modules",
+  "version": "1.0.0",
+  "description": "Opera GX-style module system for Firedragon browser",
+  "author": "Living Sin",
+  "modules": {
+    "gx-music": {
+      "name": "GX Music",
+      "version": "1.0.0",
+      "description": "Sidebar music player with Spotify/YouTube Music integration",
+      "icon": "assets/icons/music.svg",
+      "sidebar": true,
+      "popup": "modules/gx-music/popup.html",
+      "permissions": ["storage", "bookmarks"],
+      "content_scripts": [],
+      "settings": {
+        "default_provider": "youtube",
+        "autoplay": false,
+        "visualizer": true
+      }
+    },
+    "gx-theater": {
+      "name": "GX Theater",
+      "version": "1.0.0",
+      "description": "Cinema mode, video pop-out, and streaming enhancer",
+      "icon": "assets/icons/theater.svg",
+      "sidebar": true,
+      "popup": "modules/gx-theater/popup.html",
+      "permissions": ["tabs", "activeTab"],
+      "content_scripts": ["modules/gx-theater/content.js"],
+      "settings": {
+        "cinema_mode": true,
+        "pop_out": true,
+        "subtitle_enhance": true
+      }
+    },
+    "gx-cleaner": {
+      "name": "GX Cleaner",
+      "version": "1.0.0",
+      "description": "Cache, history, extension, and data cleanup tool",
+      "icon": "assets/icons/cleaner.svg",
+      "sidebar": true,
+      "popup": "modules/gx-cleaner/popup.html",
+      "permissions": ["browsingData", "storage", "management"],
+      "content_scripts": [],
+      "settings": {
+        "auto_clean": false,
+        "clean_interval_hours": 24,
+        "keep_logins": true
+      }
+    },
+    "gx-control": {
+      "name": "GX Control",
+      "version": "1.0.0",
+      "description": "Resource monitor, RAM/CPU limiter, network booster",
+      "icon": "assets/icons/control.svg",
+      "sidebar": true,
+      "popup": "modules/gx-control/popup.html",
+      "permissions": ["systemMemory", "systemCPU", "networkPrediction"],
+      "content_scripts": [],
+      "settings": {
+        "show_ram_usage": true,
+        "show_cpu_usage": true,
+        "network_booster": true,
+        "limit_background_tabs": true
+      }
+    },
+    "sidebar": {
+      "name": "Firedragon Sidebar",
+      "version": "1.0.0",
+      "description": "Custom sidebar with module panels",
+      "icon": "assets/icons/sidebar.svg",
+      "sidebar": true,
+      "popup": "modules/sidebar/popup.html",
+      "permissions": ["sidebarAction"],
+      "content_scripts": [],
+      "settings": {
+        "position": "left",
+        "width": 320,
+        "collapsible": true,
+        "modules_order": ["gx-music", "gx-theater", "gx-control", "gx-cleaner"]
+      }
+    }
+  },
+  "extension_compat": {
+    "chrome_stores": ["chrome Web Store", "Edge Add-ons", "Chrome Web Store"],
+    "supported_formats": [".crx", ".xpi", ".zip"],
+    "conversion_tool": "ext-compat/installer/convert.py",
+    "auto_install": true
+  }
+}

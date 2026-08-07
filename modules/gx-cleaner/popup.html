@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>GX Cleaner</title>
+  <style>
+    body {
+      width: 280px;
+      background: #1a0f3a;
+      color: #ffd2a3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 12px;
+    }
+    h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: #9d7aff;
+      border-bottom: 1px solid #4a3a8a;
+      padding-bottom: 6px;
+    }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #2b1d5e;
+      font-size: 13px;
+    }
+    .stat:last-child { border-bottom: none; }
+    .stat-value { color: #b8a3ff; font-weight: bold; }
+    button.clean-btn {
+      width: 100%;
+      margin-top: 10px;
+      background: #4a3a8a;
+      border: 1px solid #9d7aff;
+      color: #ffe4cc;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    button.clean-btn:hover { background: #ff7b5c; color: #0b0d17; }
+  </style>
+</head>
+<body>
+  <h2>🧹 GX Cleaner</h2>
+  <div class="stat">
+    <span>Cache</span>
+    <span class="stat-value" id="cache-size">Calculating...</span>
+  </div>
+  <div class="stat">
+    <span>History</span>
+    <span class="stat-value" id="history-size">Checking...</span>
+  </div>
+  <div class="stat">
+    <span>Extensions</span>
+    <span class="stat-value" id="ext-count">Loading...</span>
+  </div>
+  <div class="stat">
+    <span>Downloads</span>
+    <span class="stat-value" id="dl-size">Scanning...</span>
+  </div>
+  <button class="clean-btn" id="clean-all">🧹 Clean All</button>
+  <script src="popup.js"></script>
+</body>
+</html>

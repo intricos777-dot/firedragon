@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Firedragon Sidebar</title>
+  <style>
+    body {
+      width: 280px;
+      background: #1a0f3a;
+      color: #ffd2a3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 12px;
+    }
+    h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: #b8a3ff;
+      border-bottom: 1px solid #4a3a8a;
+      padding-bottom: 6px;
+    }
+    .module-card {
+      background: #2b1d5e;
+      border: 1px solid #4a3a8a;
+      border-radius: 4px;
+      padding: 8px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .module-card:hover { background: #4a3a8a; }
+    .module-icon { font-size: 20px; }
+    .module-name { font-size: 13px; font-weight: bold; }
+    .module-desc { font-size: 11px; color: #9d7aff; }
+  </style>
+</head>
+<body>
+  <h2>📌 Firedragon Sidebar</h2>
+  <div class="module-card" data-module="gx-music">
+    <div class="module-icon">🎵</div>
+    <div>
+      <div class="module-name">GX Music</div>
+      <div class="module-desc">Spotify / YouTube Music</div>
+    </div>
+  </div>
+  <div class="module-card" data-module="gx-theater">
+    <div class="module-icon">🎬</div>
+    <div>
+      <div class="module-name">GX Theater</div>
+      <div class="module-desc">Cinema mode, pop-out</div>
+    </div>
+  </div>
+  <div class="module-card" data-module="gx-control">
+    <div class="module-icon">⚡</div>
+    <div>
+      <div class="module-name">GX Control</div>
+      <div class="module-desc">RAM / CPU monitor</div>
+    </div>
+  </div>
+  <div class="module-card" data-module="gx-cleaner">
+    <div class="module-icon">🧹</div>
+    <div>
+      <div class="module-name">GX Cleaner</div>
+      <div class="module-desc">Cache / history cleanup</div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

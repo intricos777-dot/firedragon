@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Firedragon Sidebar Panel</title>
+  <style>
+    body {
+      width: 320px;
+      background: #1a0f3a;
+      color: #ffd2a3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 12px;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #4a3a8a;
+      padding-bottom: 8px;
+    }
+    .sidebar-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #b8a3ff;
+    }
+    .sidebar-toggle {
+      width: 28px;
+      height: 28px;
+      background: #2b1d5e;
+      border: 1px solid #4a3a8a;
+      color: #ffd2a3;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .sidebar-toggle:hover { background: #4a3a8a; }
+    .module-panel {
+      display: none;
+      background: #2b1d5e;
+      border: 1px solid #4a3a8a;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .module-panel.active { display: block; }
+    .module-panel h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: #ff7b5c;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar-header">
+    <div class="sidebar-title">🐉 Firedragon</div>
+    <button class="sidebar-toggle" id="collapse-btn">−</button>
+  </div>
+  <div id="modules-container">
+    <div class="module-panel" id="panel-gx-music">
+      <h3>🎵 GX Music</h3>
+      <iframe src="/modules/gx-music/popup.html" style="width:100%;height:220px;border:none;background:#1a0f3a;border-radius:4px;"></iframe>
+    </div>
+    <div class="module-panel" id="panel-gx-theater">
+      <h3>🎬 GX Theater</h3>
+      <iframe src="/modules/gx-theater/popup.html" style="width:100%;height:180px;border:none;background:#1a0f3a;border-radius:4px;"></iframe>
+    </div>
+    <div class="module-panel" id="panel-gx-control">
+      <h3>⚡ GX Control</h3>
+      <iframe src="/modules/gx-control/popup.html" style="width:100%;height:240px;border:none;background:#1a0f3a;border-radius:4px;"></iframe>
+    </div>
+    <div class="module-panel" id="panel-gx-cleaner">
+      <h3>🧹 GX Cleaner</h3>
+      <iframe src="/modules/gx-cleaner/popup.html" style="width:100%;height:220px;border:none;background:#1a0f3a;border-radius:4px;"></iframe>
+    </div>
+  </div>
+  <script src="panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# Firedragon browser launcher
+# Launches Firefox with Firedragon profile and modules enabled
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROFILE_DIR="$PROJECT_ROOT/profile"
+EXT_DIR="$PROJECT_ROOT/profile/extensions"
+ICON_PATH="$PROJECT_ROOT/assets/icons/firedragon-96.png"
+
+# Ensure profile directory exists
+mkdir -p "$PROFILE_DIR"
+mkdir -p "$EXT_DIR"
+
+# Find Firefox binary
+FIREFOX_BIN="${FIREFOX_BIN:-firefox}"
+if ! command -v "$FIREFOX_BIN" &>/dev/null; then
+    if command -v firefox &>/dev/null; then
+        FIREFOX_BIN="$(command -v firefox)"
+    elif command -v firefox-esr &>/dev/null; then
+        FIREFOX_BIN="$(command -v firefox-esr)"
+    else
+        echo "Error: Firefox not found. Install firefox or set FIREFOX_BIN." >&2
+        exit 1
+    fi
+fi
+
+PROFILE_NAME="firedragon"
+PROFILE_INI="$HOME/.mozilla/firefox/profiles.ini"
+
+# Create profile if it doesn't exist
+if ! grep -q "Name=$PROFILE_NAME" "$PROFILE_INI" 2>/dev/null; then
+    echo "[*] Creating Firedragon Firefox profile..."
+    "$FIREFOX_BIN" -CreateProfile "$PROFILE_NAME $PROFILE_DIR"
+fi
+
+# Copy user.js if it exists
+if [ -f "$PROJECT_ROOT/profile/userjs/user.js" ]; then
+    cp "$PROJECT_ROOT/profile/userjs/user.js" "$PROFILE_DIR/user.js"
+fi
+
+# Install extension compatibility layer
+if [ -f "$PROJECT_ROOT/ext-compat/installer/convert.py" ]; then
+    echo "[*] Extension compatibility layer available at ext-compat/installer/convert.py"
+fi
+
+echo "[*] Launching Firedragon browser..."
+echo "    Profile: $PROFILE_DIR"
+echo "    Modules: $(ls "$PROJECT_ROOT/modules" 2>/dev/null | tr '\n' ', ')"
+echo ""
+
+exec "$FIREFOX_BIN" -P "$PROFILE_NAME" -no-remote "$@"

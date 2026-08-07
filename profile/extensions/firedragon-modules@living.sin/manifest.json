@@ -1,0 +1,58 @@
+{
+  "manifest_version": 2,
+  "name": "Firedragon Browser",
+  "version": "1.0.0",
+  "description": "Mozilla-based browser with Opera GX-style modules, music, and theme integration",
+  "author": "Living Sin",
+  "applications": {
+    "gecko": {
+      "id": "firedragon@living.sin",
+      "strict_min_version": "115.0"
+    }
+  },
+  "permissions": [
+    "sidebarAction",
+    "storage",
+    "tabs",
+    "activeTab",
+    "bookmarks",
+    "browsingData",
+    "management",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": {
+      "48": "assets/icons/firedragon-48.png",
+      "96": "assets/icons/firedragon-96.png"
+    },
+    "default_title": "Firedragon Modules"
+  },
+  "sidebar_action": {
+    "default_title": "Firedragon Sidebar",
+    "default_panel": "modules/sidebar/panel.html",
+    "default_icon": {
+      "48": "assets/icons/sidebar-48.png"
+    }
+  },
+  "icons": {
+    "48": "assets/icons/firedragon-48.png",
+    "96": "assets/icons/firedragon-96.png"
+  },
+  "web_accessible_resources": [
+    "modules/gx-music/*",
+    "modules/gx-theater/*",
+    "modules/gx-control/*",
+    "modules/gx-cleaner/*",
+    "modules/sidebar/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["modules/gx-theater/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
