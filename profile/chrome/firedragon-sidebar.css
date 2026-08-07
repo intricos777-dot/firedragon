@@ -1,0 +1,87 @@
+/* Firedragon Sidebar - Opera GX-style sidebar with module panels */
+
+:root {
+  --firedragon-sidebar-width: 340px;
+  --firedragon-sidebar-bg: #0b0d17;
+  --firedragon-accent: #ff7b5c;
+  --firedragon-primary: #2b1d5e;
+  --firedragon-text: #ffd2a3;
+  --firedragon-muted: #c9a07a;
+}
+
+#sidebar-box {
+  background: var(--firedragon-sidebar-bg) !important;
+  border-right: 2px solid var(--firedragon-primary) !important;
+  min-width: var(--firedragon-sidebar-width) !important;
+  max-width: var(--firedragon-sidebar-width) !important;
+  width: var(--firedragon-sidebar-width) !important;
+}
+
+#sidebar-header {
+  background: linear-gradient(180deg, rgba(43,29,94,.85), rgba(11,13,23,.85)) !important;
+  color: var(--firedragon-text) !important;
+  border-bottom: 1px solid var(--firedragon-primary) !important;
+  padding: 12px 14px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: .1em !important;
+}
+
+#sidebar {
+  background: transparent !important;
+  color: var(--firedragon-text) !important;
+}
+
+/* Module panels injected by Firedragon module system */
+.firedragon-module-panel {
+  background: linear-gradient(180deg, rgba(18,21,42,.9), rgba(11,13,23,.9)) !important;
+  border-bottom: 1px solid #232850 !important;
+  padding: 14px !important;
+}
+
+.firedragon-module-panel .module-header {
+  color: var(--firedragon-muted) !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: .12em !important;
+  margin-bottom: 10px !important;
+}
+
+.firedragon-module-panel button,
+.firedragon-module-panel .toggle {
+  background: var(--firedragon-primary) !important;
+  color: var(--firedragon-text) !important;
+  border: 1px solid #3d3280 !important;
+  border-radius: 999px !important;
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+}
+
+.firedragon-module-panel button:hover,
+.firedragon-module-panel .toggle.on {
+  background: var(--firedragon-accent) !important;
+  color: #0b0d17 !important;
+  border-color: var(--firedragon-accent) !important;
+}
+
+#urlbar {
+  background: #2b1d5e !important;
+  border-color: var(--firedragon-primary) !important;
+  color: var(--firedragon-text) !important;
+  border-radius: 8px !important;
+}
+
+#nav-bar {
+  background: var(--firedragon-sidebar-bg) !important;
+  border-bottom: 1px solid var(--firedragon-primary) !important;
+}
+
+/* Custom scrollbar */
+:root {
+  --sidebar-border-radius: 12px;
+}
+
+scrollbar {
+  background: transparent !important;
+}

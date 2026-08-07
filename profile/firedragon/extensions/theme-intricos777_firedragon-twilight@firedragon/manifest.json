@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Firedragon Theme: Intricos777 Firedragon-Twilight",
+  "version": "1.0.0",
+  "description": "Pinterest board theme for Firedragon Browser",
+  "author": "Living Sin",
+  "theme": {
+    "colors": {
+      "bookmark_text": "#ffd2a3",
+      "frame": "#2b1d5e",
+      "popup": "#1a0f3a",
+      "popup_text": "#ffd2a3",
+      "sidebar": "#0b0d17",
+      "sidebar_text": "#b8a3ff",
+      "tab_background_text": "#ffe4cc",
+      "toolbar": "#1a0f3a",
+      "toolbar_text": "#ffd2a3",
+      "ntp_background": "#0b0d17",
+      "ntp_text": "#9d7aff",
+      "button_background_active": "#ff7b5c",
+      "icons": "#b8a3ff"
+    },
+    "images": {
+      "theme_frame": "assets/icons/sidebar-48.png",
+      "theme_toolbar": "assets/icons/firedragon-96.png"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "theme-intricos777_firedragon-twilight@firedragon"
+    }
+  }
+}

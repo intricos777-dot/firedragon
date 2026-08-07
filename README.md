@@ -15,6 +15,13 @@ cd /home/sin/Projects/firedragon
 ./launcher/firedragon
 ```
 
+## Control Panel
+```bash
+cd /home/sin/Projects/firedragon
+./control-panel/serve.sh
+# open http://127.0.0.1:43127
+```
+
 ## Extension Compatibility
 Install Chrome/Edge extensions:
 ```bash
@@ -23,7 +30,14 @@ python3 ext-compat/installer/convert.py extension.crx --install
 
 ## Pinterest Theme Integration
 ```bash
+# generate theme from board
 python3 ext-compat/installer/pinterest-theme.py "https://pinterest.com/username/board/"
+
+# list generated themes
+python3 ext-compat/installer/pinterest-theme.py --list
+
+# apply theme to active Firedragon profile
+python3 ext-compat/installer/apply-theme.py <theme_id>
 ```
 
 ## Profile

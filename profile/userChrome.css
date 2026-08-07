@@ -1,0 +1,4 @@
+@import "firedragon-sidebar.css";
+
+/* Load module bus if enabled */
+/* Firefox loads this file from profile root when toolkit.legacyUserProfileCustomizations.stylesheets=true */

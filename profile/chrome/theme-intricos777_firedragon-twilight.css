@@ -1,0 +1,67 @@
+/* Firedragon Theme: Intricos777 Firedragon-Twilight */
+:root {
+  --firedragon-primary: #2b1d5e;
+  --firedragon-accent: #ff7b5c;
+  --firedragon-bg: #1a0f3a;
+  --firedragon-sidebar-bg: #0b0d17;
+}
+
+/* Tab bar */
+#tabbrowser-tabs {
+  background: var(--firedragon-bg) !important;
+  border-color: var(--firedragon-primary) !important;
+}
+
+/* Sidebar */
+#sidebar-box {
+  background: var(--firedragon-sidebar-bg) !important;
+  border-right: 2px solid var(--firedragon-accent) !important;
+}
+
+/* URL bar */
+#urlbar {
+  background: #2b1d5e !important;
+  border-color: var(--firedragon-accent) !important;
+  color: #ffd2a3 !important;
+}
+
+#urlbar:focus {
+  outline: 2px solid var(--firedragon-accent) !important;
+}
+
+/* Toolbar */
+#nav-bar {
+  background: var(--firedragon-bg) !important;
+  border-bottom: 1px solid var(--firedragon-primary) !important;
+}
+
+/* Buttons */
+toolbarbutton {
+  color: #ffd2a3 !important;
+}
+
+toolbarbutton:hover {
+  background: var(--firedragon-primary) !important;
+  color: #0b0d17 !important;
+}
+
+/* Scrollbar */
+scrollbar {
+  background: var(--firedragon-bg) !important;
+}
+
+scrollbarbutton, scrollcorner {
+  background: var(--firedragon-accent) !important;
+}
+
+/* Context menu */
+menupopup, popup {
+  background: var(--firedragon-bg) !important;
+  color: #ffd2a3 !important;
+  border: 1px solid var(--firedragon-primary) !important;
+}
+
+menuitem:hover, menu:hover {
+  background: var(--firedragon-accent) !important;
+  color: #0b0d17 !important;
+}

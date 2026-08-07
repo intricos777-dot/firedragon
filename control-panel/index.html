@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Firedragon Control Panel</title>
+  <style>
+    :root {
+      --bg: #0b0d17;
+      --panel: #12152a;
+      --text: #ffd2a3;
+      --muted: #c9a07a;
+      --accent: #ff7b5c;
+      --primary: #2b1d5e;
+      --border: #2f3465;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(circle at top left, #1a0f3a, #0b0d17 55%);
+      color: var(--text);
+    }
+    header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(43,29,94,.65), rgba(11,13,23,0));
+    }
+    h1 { margin: 0; font-size: 22px; letter-spacing: .02em; }
+    p { margin: 6px 0 0; color: var(--muted); }
+    .container { display: grid; grid-template-columns: 320px 1fr; gap: 18px; padding: 18px; max-width: 1280px; margin: 0 auto; }
+    .card {
+      background: linear-gradient(180deg, rgba(18,21,42,.85), rgba(11,13,23,.85));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .card h2 { margin: 0 0 10px; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .row { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #232850; }
+    .row:last-child { border-bottom: 0; }
+    .pill { padding: 6px 10px; border-radius: 999px; background: var(--primary); border: 1px solid #3d3280; font-size: 12px; color: var(--text); }
+    .primary-btn {
+      margin-top: 10px; width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #3d3280;
+      background: linear-gradient(180deg,#3b2560,#2b1d5e); color: #fff; font-weight: 600; cursor: pointer;
+    }
+    .primary-btn:hover { filter: brightness(1.05); }
+    textarea { width: 100%; min-height: 140px; border-radius: 10px; border: 1px solid var(--border); background: #0b0d17; color: var(--text); padding: 10px; }
+    input[type="text"] { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: #0b0d17; color: var(--text); }
+    .muted { color: var(--muted); font-size: 12px; }
+    footer { padding: 18px 28px; color: #7b6fa6; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Firedragon Control Panel</h1>
+    <p>Manage modules, themes, and extension compatibility.</p>
+  </header>
+  <div class="container">
+    <section class="card">
+      <h2>Modules</h2>
+      <div class="row"><span>GX Music</span><span class="pill">Active</span></div>
+      <div class="row"><span>GX Theater</span><span class="pill">Active</span></div>
+      <div class="row"><span>GX Cleaner</span><span class="pill">Active</span></div>
+      <div class="row"><span>GX Control</span><span class="pill">Active</span></div>
+      <div class="row"><span>Sidebar</span><span class="pill">Active</span></div>
+      <button class="primary-btn" onclick="alert('Module toggles require the browser module bus.')">Toggle Modules</button>
+    </section>
+    <section class="card">
+      <h2>Pinterest Theme Integration</h2>
+      <input id="boardUrl" type="text" placeholder="https://pinterest.com/username/board/" />
+      <button class="primary-btn" id="genTheme">Generate Theme</button>
+      <div class="muted">Uses ext-compat/installer/pinterest-theme.py</div>
+      <h2 style="margin-top:14px">Generated Themes</h2>
+      <div id="themeList" class="muted">Run generate or --list to preview themes.</div>
+      <h2 style="margin-top:14px">Apply Theme</h2>
+      <textarea id="themeLog" placeholder="Theme application logs will appear here..."></textarea>
+      <button class="primary-btn" id="applyTheme">Apply Selected Theme</button>
+    </section>
+    <section class="card">
+      <h2>Extension Compatibility</h2>
+      <input id="extPath" type="text" placeholder="path/to/extension.crx" />
+      <button class="primary-btn" id="convertExt">Convert + Install</button>
+      <div class="muted">Uses ext-compat/installer/convert.py</div>
+    </section>
+  </div>
+  <footer>Firedragon Browser · Living Sin · intricos777</footer>
+  <script>
+    async function run(cmd) {
+      const res = await fetch('/api/run', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cmd }) });
+      const data = await res.json();
+      return data;
+    }
+    document.getElementById('genTheme').addEventListener('click', async () => {
+      const url = document.getElementById('boardUrl').value.trim();
+      if (!url) return alert('Pinterest board URL required');
+      const out = await run(['python3', 'ext-compat/installer/pinterest-theme.py', url]);
+      alert(out.stdout || out.stderr || JSON.stringify(out));
+    });
+    document.getElementById('convertExt').addEventListener('click', async () => {
+      const path = document.getElementById('extPath').value.trim();
+      if (!path) return alert('Extension path required');
+      const out = await run(['python3', 'ext-compat/installer/convert.py', path, '--install']);
+      alert(out.stdout || out.stderr || JSON.stringify(out));
+    });
+  </script>
+</body>
+</html>
