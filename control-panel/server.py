@@ -13,12 +13,21 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+THEME_DIR = PROJECT_ROOT / "assets" / "themes"
 
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/health":
             self._send_json({"status": "ok", "project": str(PROJECT_ROOT)})
+            return
+        if self.path == "/api/themes":
+            themes = []
+            if THEME_DIR.exists():
+                for p in sorted(THEME_DIR.iterdir()):
+                    if p.is_dir():
+                        themes.append(p.name)
+            self._send_json({"themes": themes})
             return
         if self.path == "/" or self.path.startswith("/index.html"):
             html = (PROJECT_ROOT / "control-panel" / "index.html").read_text()

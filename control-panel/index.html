@@ -72,10 +72,11 @@
       <button class="primary-btn" id="genTheme">Generate Theme</button>
       <div class="muted">Uses ext-compat/installer/pinterest-theme.py</div>
       <h2 style="margin-top:14px">Generated Themes</h2>
-      <div id="themeList" class="muted">Run generate or --list to preview themes.</div>
+      <div id="themeList" class="muted">Loading...</div>
       <h2 style="margin-top:14px">Apply Theme</h2>
-      <textarea id="themeLog" placeholder="Theme application logs will appear here..."></textarea>
+      <input id="themeId" type="text" placeholder="theme id from list above" />
       <button class="primary-btn" id="applyTheme">Apply Selected Theme</button>
+      <textarea id="themeLog" placeholder="Theme application logs will appear here..." style="margin-top:10px"></textarea>
     </section>
     <section class="card">
       <h2>Extension Compatibility</h2>
@@ -91,11 +92,18 @@
       const data = await res.json();
       return data;
     }
+    async function loadThemes() {
+      const data = await fetch('/api/themes').then(r => r.json());
+      const el = document.getElementById('themeList');
+      if (!data.themes.length) { el.textContent = 'No themes available yet.'; return; }
+      el.innerHTML = data.themes.map(t => `<div>• ${t}</div>`).join('');
+    }
     document.getElementById('genTheme').addEventListener('click', async () => {
       const url = document.getElementById('boardUrl').value.trim();
       if (!url) return alert('Pinterest board URL required');
       const out = await run(['python3', 'ext-compat/installer/pinterest-theme.py', url]);
-      alert(out.stdout || out.stderr || JSON.stringify(out));
+      document.getElementById('themeLog').value = (out.stdout || '') + (out.stderr || '');
+      loadThemes();
     });
     document.getElementById('convertExt').addEventListener('click', async () => {
       const path = document.getElementById('extPath').value.trim();
@@ -103,6 +111,13 @@
       const out = await run(['python3', 'ext-compat/installer/convert.py', path, '--install']);
       alert(out.stdout || out.stderr || JSON.stringify(out));
     });
+    document.getElementById('applyTheme').addEventListener('click', async () => {
+      const id = document.getElementById('themeId').value.trim();
+      if (!id) return alert('Theme id required');
+      const out = await run(['python3', 'ext-compat/installer/apply-theme.py', id]);
+      document.getElementById('themeLog').value = (out.stdout || '') + (out.stderr || '');
+    });
+    loadThemes();
   </script>
 </body>
 </html>
