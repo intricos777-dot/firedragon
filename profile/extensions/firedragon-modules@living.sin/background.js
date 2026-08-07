@@ -34,7 +34,7 @@ browser.runtime.onInstalled.addListener((details) => {
 
 // Handle messages from popups/content scripts
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  const { module, action, key, value } = message;
+  const { module, action, key, value, panel } = message;
 
   if (module === 'gx-cleaner') {
     if (action === 'getStats') {
@@ -68,6 +68,12 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse({ success: true });
       return true;
     }
+  }
+
+  if (module === 'sidebar' && action === 'switchPanel' && panel) {
+    browser.sidebarAction.setPanel({ panel }).catch(() => {});
+    sendResponse({ ok: true, panel });
+    return true;
   }
 
   // Unknown message

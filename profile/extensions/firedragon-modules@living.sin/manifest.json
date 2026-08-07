@@ -28,7 +28,8 @@
       "48": "assets/icons/firedragon-48.png",
       "96": "assets/icons/firedragon-96.png"
     },
-    "default_title": "Firedragon Modules"
+    "default_title": "Firedragon Modules",
+    "default_popup": "modules/sidebar/popup.html"
   },
   "sidebar_action": {
     "default_title": "Firedragon Sidebar",
