@@ -15,6 +15,47 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 THEME_DIR = PROJECT_ROOT / "assets" / "themes"
 
+# Command allowlist — only these commands can be permitted
+CMD_ALLOWLIST = {
+    "git": ["status", "log", "diff", "branch", "remote", "fetch", "pull", "push", "checkout", "merge", "rebase", "stash", "tag", "show"],
+    "npm": ["install", "update", "run", "test", "start", "build", "audit", "outdated", "list"],
+    "yarn": ["install", "add", "remove", "upgrade", "run", "test", "build", "audit"],
+    "node": ["--version", "-v"],
+    "python3": ["--version", "-v", "-m", "pytest", "-m", "pip"],
+    "pytest": ["-v", "--tb=short", "-x"],
+    "ls": ["-la", "-l", "-a", "-h", "-lah"],
+    "cat": [],
+    "pwd": [],
+    "echo": [],
+    "make": ["clean", "build", "test", "install", "all", "debug", "release"],
+    "cmake": ["--build", "--version", ".."],
+    "nproc": [],
+    "df": ["-h"],
+    "du": ["-sh", "-h"],
+    "ps": ["aux", "-ef"],
+    "top": ["-bn1"],
+    "systemctl": ["status", "is-active", "show"],
+    "journalctl": ["-n", "--no-pager", "-u"],
+}
+
+
+def is_cmd_allowed(cmd: list) -> bool:
+    """Check if a command is in the allowlist."""
+    if not cmd:
+        return False
+    base = cmd[0]
+    if base not in CMD_ALLOWLIST:
+        return False
+    # For commands with strict allowlists, check arguments
+    allowed_args = CMD_ALLOWLIST[base]
+    if not allowed_args:
+        return True  # No arg restrictions
+    # Check that all flags/args are in the allowlist
+    for arg in cmd[1:]:
+        if arg.startswith("-") and arg not in allowed_args:
+            return False
+    return True
+
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -46,6 +87,14 @@ class Handler(BaseHTTPRequestHandler):
         cmd = body.get("cmd")
         if not isinstance(cmd, list) or not cmd:
             self._send_json({"error": "cmd must be a non-empty list"}, status=400)
+            return
+        # Security: check command allowlist
+        if not is_cmd_allowed(cmd):
+            self._send_json({
+                "error": "Command not in allowlist",
+                "cmd": cmd,
+                "allowed": list(CMD_ALLOWLIST.keys()),
+            }, status=403)
             return
         try:
             proc = subprocess.run(cmd, cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=120)
