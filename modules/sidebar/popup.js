@@ -1,3 +1,4 @@
+// Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 // Firedragon sidebar popup controller
 // Shown from the browser-action popup; lets the user pick a sidebar module panel.
 

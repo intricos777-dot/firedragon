@@ -1,3 +1,4 @@
+<!-- Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work -->
 # Firedragon Browser
 Mozilla Firefox-based browser with Opera GX-style modules, music integration, and Pinterest theme support.
 

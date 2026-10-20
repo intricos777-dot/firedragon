@@ -1,3 +1,4 @@
+// Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 // GX Theater popup logic
 document.addEventListener('DOMContentLoaded', () => {
   const toggles = document.querySelectorAll('.toggle');

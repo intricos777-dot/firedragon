@@ -1,3 +1,4 @@
+// Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 // GX Cleaner popup logic
 document.addEventListener('DOMContentLoaded', async () => {
   const cacheEl = document.getElementById('cache-size');

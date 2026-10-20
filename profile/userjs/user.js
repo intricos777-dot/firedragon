@@ -1,3 +1,4 @@
+// Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 // Firedragon Browser - Mozilla-based with Opera GX-style modules
 // Profile: user.js overrides for privacy, performance, and module support
 

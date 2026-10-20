@@ -1,3 +1,4 @@
+// Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 // Firedragon Modules background service worker
 // Handles module initialization and inter-module messaging
 

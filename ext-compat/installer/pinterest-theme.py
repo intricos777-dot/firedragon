@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 """
 Pinterest Theme Integration for Firedragon Browser
 Downloads Pinterest board images and applies them as browser themes.

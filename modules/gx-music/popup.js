@@ -1,3 +1,4 @@
+// Watermark: Living_Sin (intricos777-dot) + AI agents (Hermes, Lia, opencode) - collaborative work
 // GX Music sidebar module logic
 document.addEventListener('DOMContentLoaded', () => {
   const playBtn = document.getElementById('play');
