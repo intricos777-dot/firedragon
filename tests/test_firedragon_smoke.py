@@ -2,7 +2,7 @@
 import json, subprocess, sys, tempfile, time, unittest
 from pathlib import Path
 
-REPO = Path("/home/sin/Projects/firedragon")
+REPO = Path("/home/livings/Projects/firedragon")
 PORT = 43129
 
 

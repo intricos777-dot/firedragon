@@ -12,13 +12,13 @@ Mozilla Firefox-based browser with Opera GX-style modules, music integration, an
 
 ## Quick Start
 ```bash
-cd /home/sin/Projects/firedragon
+cd /home/livings/Projects/firedragon
 ./launcher/firedragon
 ```
 
 ## Control Panel
 ```bash
-cd /home/sin/Projects/firedragon
+cd /home/livings/Projects/firedragon
 ./control-panel/serve.sh
 # open http://127.0.0.1:43127
 ```
